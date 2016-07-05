@@ -14,8 +14,8 @@ set PROTOCOL=https
 set INSTALLER_VERSION=1.2
 
 :: Paths and versions for COSMOS dependencies
-set RUBY_INSTALLER_32=rubyinstaller-2.2.3.exe
-set RUBY_INSTALLER_64=rubyinstaller-2.2.3-x64.exe
+set RUBY_INSTALLER_32=rubyinstaller-2.2.4.exe
+set RUBY_INSTALLER_64=rubyinstaller-2.2.4-x64.exe
 set RUBY_INSTALLER_PATH=//dl.bintray.com/oneclick/rubyinstaller/
 set RUBY_ABI_VERSION=2.2.0
 set DEVKIT_32=DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe
@@ -351,7 +351,7 @@ if errorlevel 1 (
 ) else (
   @echo Successfully updated gem to 2.4.4 >> !COSMOS_INSTALL!\INSTALL.log
 )
-call gem install pry -v 0.10.1
+call gem install pry --remote -v 0.10.1
 if errorlevel 1 (
   echo ERROR: Problem installing pry gem
   echo INSTALL FAILED
@@ -375,9 +375,9 @@ if errorlevel 1 (
 :: install COSMOS gem and dependencies
 echo Installing COSMOS gem !COSMOS_VERSION!...
 if !COSMOS_VERSION!=="LATEST" (
-  call gem install cosmos
+  call gem install cosmos --remote
 ) else (
-  call gem install cosmos -v !COSMOS_VERSION!
+  call gem install cosmos --remote -v !COSMOS_VERSION!
 )
 if errorlevel 1 (
   echo ERROR: Problem installing cosmos gem
